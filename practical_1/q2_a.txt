@@ -1,0 +1,7 @@
+This is a fake file: I'm curious as to how it will accomodate American and British words that mean the same thing e.g. center and centre.  Granted, they could refer to difference concepts (the shopping centre vs. I have found my meditative center), but I'm not hoping for semantic significance to come from this at the moment.
+
+Today I went bouldering and my arm did not pop out of it's socket like it did in Brooklyn.  Admittedly I was much more sober and paying attention today, so it was a distinctly lower probability of me doing something foolish.  After climbing I made a "coffee" with my Nespresso Pixie Magimix . . . I wonder how unique proper nouns will be treated by Porter Stemming and WordNet Lemmatizer.
+
+I am charging my phone right now.
+
+This is the word "is".
