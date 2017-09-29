@@ -68,50 +68,77 @@ def intersection_of_two_dicts(dict1, dict2):
 
 def spell_checker_q1_mutiple_languages(dv_list, pwl, text):
 	"""
+	General
+	- this function allows one to use multiple dictionaries and identify errors that don't occur in any of the chosen dictionaries
+	- I'm using it because I often muddle UK and US English and
 	Inputs
 	- dv_list: list of dictionary version inputs e.g. ["en_US", "en_UK"]
+	Outputs
+	- a Python-dictionary
+	- contains spelling errors that occur in all of the chosen dictionaries
+	- suggested corrections are taken from each language
 	"""
 
-	if len(dv_list) == 1:
+	if len(dv_list) == 1: # if there is only once language selected, proceed as normal
 		return spell_checker_q1_single_language(dv_list[0], pwl, text)
 	else:
-		spelling_errors_multiple_languages_dict = spell_checker_q1_single_language(dv_list[0], pwl, text)
-		for dv in dv_list[1::1]:
-			spelling_errors_multiple_languages_dict = intersection_of_two_dicts(spelling_errors_multiple_languages_dict, spell_checker_q1_single_language(dv, pwl, text))
-		return spelling_errors_multiple_languages_dict
+		spelling_errors_multiple_languages_dict = spell_checker_q1_single_language(dv_list[0], pwl, text) # instantiate the return dictionary with the results of the first language dictionary
+		for dv in dv_list[1::1]: # iterate over all other dictionaries
+			spelling_errors_multiple_languages_dict = intersection_of_two_dicts(spelling_errors_multiple_languages_dict, spell_checker_q1_single_language(dv, pwl, text)) # reduce the return object to the intersection of existing errors and newly found errors
+		return spelling_errors_multiple_languages_dict # return the Python-dictionary
 
 
 
-# create a correction funtion: ignore, add to pwl, make change
+def possible_correction_list_to_dict(pcl):
+	pcd = dict()
+	index = 0
+	for item in pcl:
+		pcd[index] = item
+		index += 1
+	return pcd
+
+
+
 def corrections_and_amendments(spelling_errors_multiple_languages_dict, text, pwl):
-	new_text = text
-	for error in spelling_errors_multiple_languages_dict:
-		possible_corrections = spelling_errors_multiple_languages_dict[error]
-		print("Possible Spelling Error: {}".format(error))
-		print("Possible Corrections: {}".format(possible_corrections))
-		action = input("Do you want to correct (c), skip (s), save (w), or modify (m) the word? ")
-		if action == "c":
+	"""
+	General
+	- this function allows a user to correct or otherwise deal with identified spelling errors
+	Input
+	- spelling_errors_multiple_languages_dict: output of spell_checker_q1_mutiple_languages()
+	- text: the text to be evaluated
+	- pwl: personal word list
+	Output
+	- the correted text
+	"""
+	new_text = text # make a copy of the existing text; we don't want to mutate existing data
+	for error in spelling_errors_multiple_languages_dict: # iterate over the identified errors
+		possible_corrections = spelling_errors_multiple_languages_dict[error] # create a variable containing the possible corrections fo the error
+		possible_corrections.sort() # sort the list
+		print("Possible Spelling Error: {}".format(error)) # present the error to the user
+		print("Possible Corrections: {}".format(possible_correction_list_to_dict(possible_corrections))) # present solutions to the user
+		action = input("Do you want to correct (c), skip (s), save (w), or modify (m) the word? ") # determine what the user wants to do
+		if action == "c": # make a change in the document
 			index = int(input("Type in the appropriate index: "))
 			correction = possible_corrections[index]
 			new_text = new_text.replace(error, correction)
-		elif action == "s":
+		elif action == "s": # do nothing i.e. skip
 			pass
 		elif action == "w":
-			with open(pwl, "a") as destination:
+			with open(pwl, "a") as destination: # save the error as in the pwl i.e. write
 				destination.write(error + "\n")
-		elif action == "m":
+		elif action == "m": # make a bespoke modification to the text
 			new_word = input("Please type in the new word: ")
 			new_text = new_text.replace(error, new_word)
-			further_action = input("Would you like to save the world to the personal word list? y/n")
+			further_action = input("Would you like to save the world to the personal word list? y/n") # see if we should add this to the pwl
 			if further_action == "y":
 				with open(pwl, "a") as destination:
 					destination.write(new_word + "\n")
 			else:
 				pass
 		else:
-			print("You may have fucked up, but this is just a tool for me to play with, so figure it out yourself.")
+			print("You may have fucked up, but this is just a tool for me to play with, so figure it out yourself.") # this was just made for me for this assignment, so it's neither user friendly nor robust
 		print("")
-	return new_text
+	return new_text # return the new text
 
 
 
