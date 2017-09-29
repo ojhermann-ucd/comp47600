@@ -31,7 +31,8 @@ if __name__ == "__main__":
 	print("Otto, in the report remember to explain why you used both a UK and US dictionary.")
 	print("")
 	print(text)
-	new_text = q1_spell_checker.corrections_and_amendments(q1_spell_checker.spell_checker_q1_mutiple_languages(dv_list, pwl, text), text, pwl).lower()
+	new_text = q1_spell_checker.corrections_and_amendments(q1_spell_checker.spell_checker_q1_mutiple_languages(dv_list, pwl, text), text, pwl)
+	new_text.lower() # make lower case . . . in a way that a reviewer can see clearly
 	with open("q1_b_normalized.txt", "w") as destination:
 		# save the file after all the changes: spell checked and lower case
 		destination.write(new_text)

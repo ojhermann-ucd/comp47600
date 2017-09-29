@@ -40,6 +40,10 @@ def lower_case_token_list(token_list):
 
 
 def review_post_tag(pos_tag_tokens):
+	"""
+	General
+	- this function is used to evalute the output of using 
+	"""
 	for pair in pos_tag_tokens:
 		print(pair[0])
 		nltk.help.upenn_tagset(pair[1])
