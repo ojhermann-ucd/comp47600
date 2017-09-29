@@ -149,7 +149,7 @@ if __name__ == "__main__":
 	dv_us = "en_US"
 	dv_uk = "en_UK"
 	pwl = "q1_spell_checker_personal_dictionary.txt"
-	text  = open("q1_source.txt").read()
+	text  = open("q1_a.txt").read()
 	dv_list = [dv_us, dv_uk]
 
 	# spell_checker_q1 test

@@ -32,7 +32,7 @@ if __name__ == "__main__":
 	print("")
 	print(text)
 	new_text = q1_spell_checker.corrections_and_amendments(q1_spell_checker.spell_checker_q1_mutiple_languages(dv_list, pwl, text), text, pwl).lower()
-	with open("q1_b.txt", "w") as destination:
+	with open("q1_b_normalized.txt", "w") as destination:
 		# save the file after all the changes: spell checked and lower case
 		destination.write(new_text)
 
@@ -40,9 +40,14 @@ if __name__ == "__main__":
 	stop_words = set(stopwords.words('english'))
 	new_text = [word for word in new_text.strip().split() if word not in stop_words]
 	new_text = " ".join(new_text)
-	with open("q1_b.txt", "w") as destination:
+	with open("q1_b_normalized_stop_removed.txt", "w") as destination:
 		destination.write(new_text)
 
 	# display the new tokens
-	new_tokens = tokenize_text_file("q1_b.txt")
+	print("Tokens after only normalization")
+	new_tokens = tokenize_text_file("q1_b_normalized.txt")
+	print(new_tokens)
+	print("")
+	print("Tokens after normalization and stop word removal")
+	new_tokens = tokenize_text_file("q1_b_normalized_stop_removed.txt")
 	print(new_tokens)

@@ -35,13 +35,6 @@ def pos_conversion(pos):
 		return None
 
 def word_net_lemmatizer(tokens):
-	# wnl_dict = dict()
-	# for t in tokens:
-	# 	print(t)
-	# 	print(WordNetLemmatizer().lemmatize(t, pos='v'))
-	# 	print("")
-
-
 	pos_tag_tokens = nltk.pos_tag(tokens)
 	wnl_dict = dict()
 	for pair in pos_tag_tokens:
@@ -74,4 +67,3 @@ if __name__ == '__main__':
 		print(key)
 		print(wnl_dict[key])
 		print("")
-
