@@ -1,7 +1,6 @@
 # imports
 import nltk
 from nltk.corpus import stopwords
-import q1_functions
 import q1_spell_checker
 
 
