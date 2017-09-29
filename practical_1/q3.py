@@ -5,6 +5,14 @@ from bs4 import BeautifulSoup
 
 
 def get_html(url):
+	"""
+	General
+	- create BeautfiulSoup object
+	Input
+	- string representation of the url
+	Outpu
+	- a BeautifulSoup html object
+	"""
 	return BeautifulSoup(urlopen(url), "html.parser")
 
 
@@ -20,10 +28,10 @@ if __name__ == '__main__':
 	print("")
 	print("Title")
 	for item in soup_object.find_all("title"):
-		print(item.get_text())
+		print(item.get_text()) # for each title part of the page, print the text content i.e. avoid the tags and shit
 
 	# display the content of the body of the blog
 	print("")
 	print("Body")
 	for item in soup_object.find_all("body"):
-		print(item.get_text())
+		print(item.get_text()) # for each body part of the page, print the text content i.e. avoid the tags and shit

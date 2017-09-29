@@ -90,6 +90,12 @@ def spell_checker_q1_mutiple_languages(dv_list, pwl, text):
 
 
 def possible_correction_list_to_dict(pcl):
+	"""
+	General
+	- turns a Python-list into a Python-dictionary
+	- key: position to be typed into spell check command
+	- value: value to change error into
+	"""
 	pcd = dict()
 	index = 0
 	for item in pcl:

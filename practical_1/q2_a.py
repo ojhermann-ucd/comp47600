@@ -15,13 +15,23 @@ def tokenize_text_file(file_name):
 
 
 def porter_stemmer(tokens):
-	ps_dict = dict()
-	for t in tokens:
+	"""
+	General
+	- this function converts the PorterStemmer() results into a readable dictionary object
+	Input
+	- tokens: results of tokenize_text_file()
+	Output
+	- Python-dictionary
+	-- key: stem
+	-- value: list of tokens converted into the stem
+	"""
+	ps_dict = dict() # create a shell dictionary
+	for t in tokens: # iterate over the tokens
 		t_stem = PorterStemmer().stem(t)
 		if t_stem in ps_dict:
-			ps_dict[t_stem].append(t)
+			ps_dict[t_stem].append(t) # append a list
 		else:
-			ps_dict[t_stem] = [t]
+			ps_dict[t_stem] = [t] # create a list
 	return ps_dict
 
 
