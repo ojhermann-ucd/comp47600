@@ -1,0 +1,16 @@
+original
+This is my text.  It contains about fourty words, of which I expect roughly half to be excluded as stop words.  If I modified the input of the R command, I could change the results. I will repeat two words: donkey, donkey, donkey and is is is.
+
+excluded_list
+['about', 'and', 'as', 'be', 'change', 'command', 'contains', 'could', 'excluded', 'expect', 'fourty', 'half', 'i', 'if', 'input', 'is', 'it', 'modified', 'my', 'of', 'r', 'repeat', 'results', 'roughly', 'stop', 'text', 'the', 'this', 'to', 'two', 'which', 'will']
+
+included_list
+['donkey', 'words']
+
+Given the prevalance of donkey and words and the lack of defined min.freq cutoff, only donkey and words have been selected.  It seems that in the absense of an explicit value for min.freq, wordcloud not only filters stop words, but it filters verbs, too.
+
+I would guess that there is some basic form of text pre-processing occuring, which would include aspects of normalisation, stemming, and possible lemmatization.  Various other inputs (not displayed) also suggest the text-preprocessing favours nouns over verbs.
+
+To make wordcloud more inclusive of words in the word-list, it's best to make the parameters explicit (see https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf), specifically entering freq and setting the value of min.freq e.g. min.freq=1 will even include standard stop words (and all other words used at least once).
+
+More precision would involved modifying elements of the other packages we used, but it is beyond the scope of this question to demonstrate those possibilities

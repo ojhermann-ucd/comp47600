@@ -1,0 +1,10 @@
+original
+This is my text.  It contains about thirty words, of which I expect roughly half to be excluded as stop words.  If I modified the input of the R command, I could change the results.
+
+excluded_list
+['about', 'as', 'be', 'could', 'i', 'if', 'is', 'it', 'my', 'of', 'r', 'the', 'to', 'which']
+
+included_list
+['change', 'command', 'contains', 'excluded', 'expect', 'half', 'input', 'modified', 'results', 'roughly', 'stop', 'text', 'thirty', 'this', 'words']
+
+These results are consistent with my original theory (and the documentation for the wordcloud package); I would argue that my theory is correct as it concurs with the documentation and emperical evidence.
