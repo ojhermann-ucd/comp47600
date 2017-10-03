@@ -1,2 +1,13 @@
 Article: https://static.googleusercontent.com/media/www.google.com/en//googleblogs/pdfs/google_predicting_the_present.pdf
 
+
+
+What is needed?
+
+Data
+- googletrends.csv; https://trends.google.com/trends/
+- FordSales.csv; not sure where to source this
+
+A seasonal autoregressive model is easy enough to implement (and the paper provides explicit code for R), so the challenge in replicating this comes from the data.  It may be possible to obtain the same Google Trends data as was used (i.e. https://trends.google.com/trends/), but using the website it's not clear if the data now availble would match the trend data used eight years ago, even if it's ostensbily the same data.
+
+The Ford sales data might not be easy to obtain: the figures would need to be sourced from Automotive News, access to which might be problematic.
