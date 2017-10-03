@@ -1,0 +1,1 @@
+As the smoothing value s increases, the shape of the graph approaches a straight line.  This is clearly explained at https://books.google.com/ngrams/info, but, in brief, the smoothing value n is the input in a moving average f(n) such that 2n + 1 values will be averaged, with n year before a given year, n years after, and the year itself.

@@ -1,0 +1,15 @@
+Sources
+- Google NGram Viewer: https://books.google.com/ngrams/graph?content=Mark+Keane&year_start=1961&year_end=2008&corpus=15&smoothing=0&share=&direct_url=t1%3B%2CMark%20Keane%3B%2Cc0#
+- Google Scholar Citation: https://scholar.google.com/citations?user=1Yo3hSkAAAAJ
+- UCD Site: https://web.archive.org/web/20081228051407/http://www.csi.ucd.ie/users/mark-keane
+
+
+Professor Mark Keane was born in 1961, so I'll ignore the data prior to 1979 under the assumption Mark didn't publish anything of note prior to being 18.
+- 1987: On retrieving analogues when solving problems, The Quarterly Journal of Experimental Psychology 39 (1), 29-41
+- 1988: Analogical problem solving., Halstead Press
+- 1988: Incremental Analogical Mapping: A Computational Model of Analogy, Third European Working Session on Learning
+- 1998: Adaptation-guided retrieval: questioning the similarity assumption in reasoning, Artificial intelligence 102 (2), 249-293
+- 1998: Principle differences in structure mapping, Analogy'98
+- 2000: Efficient creativity: Constraint-guided conceptual combination, Cognitive Science 24 (2), 299-349 (this was the biggie)
+- 2005: Cognitive Psychology: A Student's Handbook: A Student's Handbook 5th Edition, Psychology Press
+- 2005: Retrieval, reuse, revision and retention in case-based reasoning, The Knowledge Engineering Review 20 (3), 215-240

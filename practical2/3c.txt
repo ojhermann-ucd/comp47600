@@ -1,0 +1,8 @@
+Yes, there is a difference between Method 1 and Method 1: Method 1 is consistenly larger than Method 2.  The denominator in Method 1 has only three elements, whereas the denominator in Method 2 has 15, including an overlapping element, call it r1.
+
+m1 = r1 / r1 + r2 + r3
+m2 = r1 / r1 + c2 + c3 + ... + c15
+
+In order for m1 < m2, r2 + r3 > c2 + ... + c15 i.e. r2 and r3 would need to be on average more than seven times larger than the elements c2, c3, ..., c15.
+
+For m1 < m2 on average, at least eight rows would need to conform to the above argument.  But then 2 out of 3 colums in each row would be at least seven times as large as the values in the other column, which would mean each of those columns have a higher sum than the rows, which means m1 is not less than m2 on average.
