@@ -10,4 +10,4 @@ Data
 
 A seasonal autoregressive model is easy enough to implement (and the paper provides explicit code for R), so the challenge in replicating this comes from the data.  It may be possible to obtain the same Google Trends data as was used (i.e. https://trends.google.com/trends/), but using the website it's not clear if the data now availble would match the trend data used eight years ago, even if it's ostensbily the same data.
 
-The Ford sales data might not be easy to obtain: the figures would need to be sourced from Automotive News, access to which might be problematic.
+The Ford sales data might not be easy to obtain: the figures would need to be sourced from Automotive News, access to which might be problematic.  The data could also have been revised since the initial publication, so the actual results might be differrent even if the methods and model were perfectly replicated.

@@ -2,9 +2,9 @@ original
 May our children and our children's children to a thousand generations, continue to enjoy the benefits conferred upon us by a united country, and have cause yet to rejoice under those glorious institutions bequeathed us by Washington and his compeers.
 
 excluded_list
-['our', 'children', 'and', 'our', 'children', 'to', 'a', 'to', 'the', 'us', 'by', 'a', 'and', 'have', 'to', 'under', 'those', 'us', 'by', 'and', 'his']
+['a', 'and', 'by', 'have', 'his', 'our', 'the', 'those', 'to', 'under', 'us']
 
 included_list
-['washington', 'thousand', 'enjoy', 'glorious', 'country', 'united', 'compeers', 'may', 'childrens', 'upon', 'benefits', 'bequeathed', 'yet', 'cause', 'conferred', 'rejoice', 'continue', 'generations', 'institutions']
+['benefits', 'bequeathed', 'cause', 'children', 'childrens', 'compeers', 'conferred', 'continue', 'country', 'enjoy', 'generations', 'glorious', 'institutions', 'may', 'rejoice', 'thousand', 'united', 'upon', 'washington', 'yet']
 
 It appears that the excluded words are stop words.  Reviewing the documentation for the R wordcloud package (https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf) confirms this is the case: our input translates is a character vector and, when we did not specify the freq parameter in our command, standard stopwords were removed prior to plotting the word cloud.
