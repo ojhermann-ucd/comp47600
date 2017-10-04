@@ -1,4 +1,4 @@
-<iframe name="ngram_chart" src="https://books.google.com/ngrams/interactive_chart?content=suffrage%2C+equality%2C+liberation&case_insensitive=on&year_start=1500&year_end=2008&corpus=15&smoothing=7&share=&direct_url=t4%3B%2Csuffrage%3B%2Cc0%3B%2Cs0%3B%3Bsuffrage%3B%2Cc0%3B%3BSuffrage%3B%2Cc0%3B.t4%3B%2Cequality%3B%2Cc0%3B%2Cs0%3B%3Bequality%3B%2Cc0%3B%3BEquality%3B%2Cc0%3B.t4%3B%2Cliberation%3B%2Cc0%3B%2Cs0%3B%3Bliberation%3B%2Cc0%3B%3BLiberation%3B%2Cc0%3B%3BLIBERATION%3B%2Cc0" width=900 height=500 marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=no></iframe>
+https://books.google.com/ngrams/graph?content=equality%2Csuffrage%2Cliberty&year_start=1500&year_end=2008&corpus=15&smoothing=3&share=&direct_url=t1%3B%2Cequality%3B%2Cc0%3B.t1%3B%2Csuffrage%3B%2Cc0%3B.t1%3B%2Cliberty%3B%2Cc0
 
 I chose "equality", "suffrage", and "liberation" as they all related to widepsread rise of democratic government and individual rights that have been on the rise, on average, for the past 500 years.
 
