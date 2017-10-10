@@ -120,7 +120,7 @@ def print_matrix():
 	for t in terms_dict:
 		temp_list = list()
 		temp_list.append(t)
-		for f in file_names:
+		for f in file_names[1::1]:
 			if f in terms_dict[t]:
 				temp_list.append(terms_dict[t][f])
 			else:
