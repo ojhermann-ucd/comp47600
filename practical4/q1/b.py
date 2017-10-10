@@ -1,6 +1,7 @@
 # imports
 import a
 import glob
+import math
 
 
 
@@ -28,22 +29,48 @@ def tf_boolean_dict(token_list):
 	# frequency dict
 	frequency_dict = boolean_dict
 	for token in frequency_dict:
-		frequency_dict[token] = float(boolean_dict[token] / count)
+		frequency_dict[token] = round(float(boolean_dict[token] / count), 2)
 	# return
 	return [boolean_dict, frequency_dict]
 
 
 
+# LOG-SCALED
+def tf_log_scaled(token_list, base):
+	"""
+	This function turns the boolean frequncy and transforms it into a log-scaled frequency
+	"""
+	log_scaled_outputs = tf_boolean_dict(token_list)
+	for token in log_scaled_outputs[1]:
+		log_scaled_outputs[1][token] = round(math.log(log_scaled_outputs[1][token], base),2)
+	return log_scaled_outputs
+
+
+
+# Augmented frequency
+
+
+
+
 if __name__ == '__main__':
-	print("")
-	print("Boolean TF Scores")
 	# go to the files
 	a.go_a_to_tweets()
 	# iterate over all the files
 	for file_name in glob.glob("*.tweet"):
-		print("File: {}".format(file_name)) # print the file name
-		token_list = a.tokenize_text_file_remove_stop_words(file_name) # generate the token_list
-		print("Token List: {}".format(token_list))
+		# generate the data
+		token_list = a.tokenize_text_file_remove_stop_words(file_name)
 		boolean_outputs = tf_boolean_dict(token_list)
-		print("TF Boolean Frequencies: {}".format(boolean_outputs[1]))
+		log_scaled_outputs = tf_log_scaled(token_list, 2)
+
+		# general information
 		print("")
+		print("File: {}".format(file_name)) # print the file name
+		print("Token List: {}".format(token_list))
+
+		# boolean
+		print("TF Boolean Frequencies: {}".format(boolean_outputs[1]))
+
+		# log scaled
+		print("TF Log-Scaled Frequencies: {}".format(log_scaled_outputs[1]))
+
+		# augmented frequncy
