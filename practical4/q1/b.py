@@ -24,7 +24,7 @@ if __name__ == "__main__":
 	# print(q1.get_terms())
 	# print(q1.create_matrix())
 	
-	# TF SCORE MATRIX
+	# TF SCORE MATRIX FOR REVIEW
 	print("")
 	print("TF Score Matrix")
 	test_matrix = q1.create_matrix()
