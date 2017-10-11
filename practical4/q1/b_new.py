@@ -18,3 +18,7 @@ if __name__ == "__main__":
 		print("File Name: {} TF Boolean Scores".format(file_name))
 		print(tf_boolean)
 		print("")
+
+	#
+	print(q1.get_file_names())
+	print(q1.get_terms())

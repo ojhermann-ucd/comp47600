@@ -65,21 +65,15 @@ def tf_boolean(file_name):
 def get_file_names():
 	# file_name_list
 	file_name_list = list()
-	# go to the files
-	go_a_to_tweets()
 	# iterate over files
 	for file_name in glob.glob("*tweet"):
 		file_name_list.append(file_name)
-	# return to starting directory
-	go_tweets_to_a()
 	# return file_name_list
 	return file_name_list
 
 def get_terms():
 	# term_list
 	term_dict = dict()
-	# got to the files
-	go_a_to_tweets()
 	# iterate over the files
 	for file_name in glob.glob("*tweet"):
 		# generate a tf_boolean_dict
@@ -92,4 +86,14 @@ def get_terms():
 				else:
 					term_dict[term][file_name] = 1
 			else:
+				term_dict[term] = dict()
 				term_dict[term][file_name] = 1
+	# return
+	return term_dict
+
+def create_matrix():
+	# data
+	file_name_list = get_file_names()
+	file_name_list.instert(0, "")
+	term_dict = get_terms()
+	
