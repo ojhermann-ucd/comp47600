@@ -67,26 +67,7 @@ def tf_boolean(file_name):
 	for token in frequency_dict:
 		total_tokens += frequency_dict[token]
 	# populate tf_boolean_dict
-
-
-
-	# create the dictionary shell
-	boolean_dict = dict()
-	# count variable
-	count = 0
-	# iterate over the tokens in token_list
-	for token in token_list:
-		# increment count
-		count += 1
-		# incremenet if already in the dict
-		if token in boolean_dict:
-			boolean_dict[token] += 1
-		# create an entry if not in the list
-		else:
-			boolean_dict[token] = 1
-	# frequency dict
-	frequency_dict = boolean_dict
 	for token in frequency_dict:
-		frequency_dict[token] = round(float(boolean_dict[token] / count), 2)
-	# return
-	return [boolean_dict, frequency_dict]
+		tf_boolean_dict[token] = round(float(frequency_dict[token] / total_tokens), 2)
+	# return tf_boolean_dict
+	return tf_boolean_dict
