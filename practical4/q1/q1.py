@@ -110,3 +110,8 @@ def create_matrix():
 	term_list.insert(0, file_name_list)
 	# return 
 	return term_list
+
+
+def print_matrix(matrix):
+	for array in matrix:
+		print(" ".join(["{:>16}".format(item) for item in array]))

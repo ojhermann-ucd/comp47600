@@ -23,3 +23,5 @@ if __name__ == "__main__":
 	print(q1.get_file_names())
 	print(q1.get_terms())
 	print(q1.create_matrix())
+	test_matrix = q1.create_matrix()
+	q1.print_matrix(test_matrix)
