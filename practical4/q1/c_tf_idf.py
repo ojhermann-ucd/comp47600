@@ -31,10 +31,26 @@ def idf(term, base):
 	fraction = idf_numerator() / idf_denominator(term)
 	return math.log(fraction, base)
 
-
-
 def tf_idf_boolean(token_list, term, base):
-	
+	boolean_dict = b_tf.tf_boolean_dict(token_list)[1]
+	tf_idf_dict = dict()
+	for term in boolean_dict:
+		tf_idf_dict[ter] = boolean_dict[term] * idf(term, base)
+	return tf_idf_dict
+
+def tf_idf_log_scaled(token_list, term, base):
+	log_scaled_dict = b.tf_log_scaled(token_list, base)
+	tf_idf_dict = dict()
+	for term in log_scaled_dict:
+		tf_idf_dict[ter] = log_scaled_dict[term] * idf(term, base)
+	return tf_idf_dict
+
+def tf_idf_augmented_frequency(token_list, term, base):
+	augmented_dict = b.tf_log_scaled(token_list, base)
+	tf_idf_dict = dict()
+	for term in augmented_dict:
+		tf_idf_dict[ter] = augmented_dict[term] * idf(term, base)
+	return tf_idf_dict
 
 
 
