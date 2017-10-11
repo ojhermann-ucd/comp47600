@@ -46,7 +46,7 @@ def tokenize_text_file_remove_stop_words(file_name):
 
 
 # TF SCORES
-def tf_frequency_no_stop_words(file_name):
+def tf_boolean(file_name):
 	# data
 	token_list = tokenize_text_file_remove_stop_words(file_name)
 	frequency_dict = dict()
@@ -59,15 +59,6 @@ def tf_frequency_no_stop_words(file_name):
 	# return frequency_dict
 	return frequency_dict
 
-def tf_boolean(file_name):
-	# data
-	frequency_dict = tf_frequency_no_stop_words(file_name)
-	tf_boolean_dict = dict()
-	total_tokens = 0
-	for token in frequency_dict:
-		total_tokens += frequency_dict[token]
-	# populate tf_boolean_dict
-	for token in frequency_dict:
-		tf_boolean_dict[token] = round(float(frequency_dict[token] / total_tokens), 2)
-	# return tf_boolean_dict
-	return tf_boolean_dict
+
+
+# MATRIX
