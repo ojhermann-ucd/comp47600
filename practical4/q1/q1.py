@@ -99,7 +99,7 @@ def create_matrix():
 	# term_list
 	term_list = list() # a list of lists
 	for term in term_dict:
-		temp_list = list()
+		temp_list = [term]
 		for f in file_name_list:
 			if f in term_dict[term]:
 				temp_list.append(term_dict[term][f])
