@@ -42,3 +42,51 @@ def tokenize_text_file_remove_stop_words(file_name):
 	stop_words = set(stopwords.words('english'))
 	# return
 	return [t for t in tokens if t not in stop_words]
+
+
+
+# TF SCORES
+def tf_frequency_no_stop_words(file_name):
+	# data
+	token_list = tokenize_text_file_remove_stop_words(file_name)
+	frequency_dict = dict()
+	# populate frequency_dict
+	for token in token_list:
+		if token in frequency_dict:
+			frequency_dict[token] += 1
+		else:
+			frequency_dict[token] = 1
+	# return frequency_dict
+	return frequency_dict
+
+def tf_boolean(file_name):
+	# data
+	frequency_dict = tf_frequency_no_stop_words
+	tf_boolean_dict = dict()
+	total_tokens = 0
+	for token in frequency_dict:
+		total_tokens += frequency_dict[token]
+	# populate tf_boolean_dict
+
+
+
+	# create the dictionary shell
+	boolean_dict = dict()
+	# count variable
+	count = 0
+	# iterate over the tokens in token_list
+	for token in token_list:
+		# increment count
+		count += 1
+		# incremenet if already in the dict
+		if token in boolean_dict:
+			boolean_dict[token] += 1
+		# create an entry if not in the list
+		else:
+			boolean_dict[token] = 1
+	# frequency dict
+	frequency_dict = boolean_dict
+	for token in frequency_dict:
+		frequency_dict[token] = round(float(boolean_dict[token] / count), 2)
+	# return
+	return [boolean_dict, frequency_dict]
