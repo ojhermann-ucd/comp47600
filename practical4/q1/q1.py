@@ -94,6 +94,19 @@ def get_terms():
 def create_matrix():
 	# data
 	file_name_list = get_file_names()
-	file_name_list.instert(0, "")
+	file_name_list.insert(0, "")
 	term_dict = get_terms()
-	
+	# term_list
+	term_list = list() # a list of lists
+	for term in term_dict:
+		temp_list = list()
+		for f in file_name_list:
+			if f in term_dict[term]:
+				temp_list.append(term_dict[term][f])
+			else:
+				temp_list.append(0)
+		term_list.append(temp_list)
+	# modify term_list to be the final list
+	term_list.insert(0, file_name_list)
+	# return 
+	return term_list
