@@ -61,7 +61,7 @@ def tf_frequency_no_stop_words(file_name):
 
 def tf_boolean(file_name):
 	# data
-	frequency_dict = tf_frequency_no_stop_words
+	frequency_dict = tf_frequency_no_stop_words(file_name)
 	tf_boolean_dict = dict()
 	total_tokens = 0
 	for token in frequency_dict:
