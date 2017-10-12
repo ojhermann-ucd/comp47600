@@ -83,12 +83,12 @@ def get_terms():
 		for term in tf_boolean_dict:
 			if term in term_dict:
 				if file_name in term_dict[term]:
-					term_dict[term][file_name] += 1
+					term_dict[term][file_name] += tf_boolean_dict[term]
 				else:
-					term_dict[term][file_name] = 1
+					term_dict[term][file_name] = tf_boolean_dict[term]
 			else:
 				term_dict[term] = dict()
-				term_dict[term][file_name] = 1
+				term_dict[term][file_name] = tf_boolean_dict[term]
 	# return
 	return term_dict
 
@@ -132,7 +132,8 @@ def get_idf_denominator(term, term_dict):
 # idf
 def get_idf(term, term_dict, base, idf_numerator):
 	idf_denominator = get_idf_denominator(term, term_dict)
-	return round(float(math.log(idf_numerator/idf_denominator, base)), 2)
+	idf_value = round(float(math.log(idf_numerator/idf_denominator, base)), 2)
+	return max(0, idf_value) # if negative, should be zero but denominator causes negative value
 
 # idf_boolean
 def td_idf_boolean(term_dict, base):
@@ -149,3 +150,27 @@ def td_idf_boolean(term_dict, base):
 			idf_boolean_dict[term][file_name] *= idf
 	# return
 	return idf_boolean_dict
+
+
+
+# TF_IDF MATRIX
+def tf_idf_matrix():
+	# data
+	file_name_list = get_file_names()
+	file_name_list.insert(0, "")
+	input_term_dict = get_terms()
+	term_dict = td_idf_boolean(input_term_dict, 2)
+	# term_list
+	term_list = list() # a list of lists
+	for term in term_dict:
+		temp_list = [term]
+		for f in file_name_list[1::1]:
+			if f in term_dict[term]:
+				temp_list.append(term_dict[term][f])
+			else:
+				temp_list.append(0)
+		term_list.append(temp_list)
+	# modify term_list to be the final list
+	term_list.insert(0, file_name_list)
+	# return 
+	return term_list
