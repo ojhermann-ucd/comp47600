@@ -186,7 +186,7 @@ def rank_floats_to_make_ints(output_dict):
 	float_list = list(float_set)
 	float_list.sort()
 	if float_list[0] != 0:
-		float_list.instert(0,0) # only want zero to be given a value of zero
+		float_list.insert(0,0) # only want zero to be given a value of zero
 	# new_dict
 	new_dict = output_dict
 	for term in new_dict:
@@ -194,7 +194,7 @@ def rank_floats_to_make_ints(output_dict):
 	return new_dict
 
 
-def word_cloud_output(input_dict):
+def word_cloud_input(input_dict):
 	output_dict = dict()
 	for term in input_dict:
 		score = 0
@@ -203,5 +203,8 @@ def word_cloud_output(input_dict):
 		output_dict[term] = score
 	# modify contents
 	new_dict = rank_floats_to_make_ints(output_dict)
-	return new_dict
-
+	wc_string = ""
+	for term in new_dict:
+		for i in range(0, new_dict[term]):
+			wc_string += "{} ".format(term)
+	return wc_string

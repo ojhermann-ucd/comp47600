@@ -16,7 +16,9 @@ if __name__ == "__main__":
 	q1.print_matrix(test_matrix)
 	print("")
 
+	# WORDCLOUD INPUT
 	print("")
-	print("TD-IDF Score Matrix")
-	test_matrix_2 = q1.tf_idf_matrix()
-	q1.print_matrix(test_matrix_2)
+	print("TF Score Wordcloud Input")
+	input_dict = q1.get_terms()
+	word_cloud_input = q1.word_cloud_input(input_dict)
+	print(word_cloud_input)
