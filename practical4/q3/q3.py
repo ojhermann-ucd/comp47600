@@ -42,15 +42,88 @@ def entropy(file_name):
 
 
 
+# EXTRACTION FUNCTIONS
+def get_data(file_name):
+	data = list()
+	with open(file_name, "r") as source:
+		count = 3
+		written = 0
+		for line in source:
+			if count % 3 == 0:
+				file_type = file_name.split(".")[0]
+				new_file_name = "{}.{}".format(written, file_type)
+				with open(new_file_name, "w") as destination:
+					destination.write(line)
+				written += 1
+			count += 1
+
+
+
+# COMBINE FILES
+def big_spam():
+	with open ("big.spam", "w") as destination:
+		for file_name in glob.glob("*spam"):
+			with open(file_name, "r") as source:
+				destination.write(source.read())
+
+def big_random():
+	with open ("big.random", "w") as destination:
+		for file_name in glob.glob("*random"):
+			with open(file_name, "r") as source:
+				destination.write(source.read())
+
+def big_both():
+	with open ("big.both", "w") as destination:
+		for file_name in glob.glob("*spam"):
+			with open(file_name, "r") as source:
+				destination.write(source.read())
+	with open ("big.both", "a") as destination:
+		for file_name in glob.glob("*random"):
+			with open(file_name, "r") as source:
+				destination.write(source.read())
+
+
+
+
+
+
 if __name__ == '__main__':
-	
+
+
+	# MAKE SOURCE FILES
+	# individual files
+	for file_name in glob.glob("*.txt"):
+		get_data(file_name)
+	# big spam
+	big_spam()
+	# big random
+	big_random()
+	# big both
+	big_both()
+
+
 	# INDIVIDUAL ENTROPY
 	print("")
-	print("Individual Entropy: Random")
+	print("Entropy: Random")
+	total = 0
+	count = 0
 	for file_name in glob.glob("*random"):
 		print("{}: {}".format(file_name, entropy(file_name)))
+		count += 1
+		total += entropy(file_name)
+	print("{}: {}".format("Average Random", round(total/count, 2)))
 
 	print("")
-	print("Individual Entropy: Spam")
+	print("Entropy: Spam")
+	total = 0
+	count = 0
 	for file_name in glob.glob("*spam"):
-		print("{}: {}".format(file_name, entropy(file_name)))	
+		print("{}: {}".format(file_name, entropy(file_name)))
+		count += 1
+		total += entropy(file_name)
+	print("{}: {}".format("Average Spam", round(total/count, 2)))
+
+	print("")
+	print("Entropy: Combined")
+	print("{}: {}".format("big.both", entropy("big.both")))
+	print("")
