@@ -174,3 +174,34 @@ def tf_idf_matrix():
 	term_list.insert(0, file_name_list)
 	# return 
 	return term_list
+
+
+
+# WORDCLOUD OUTPUT
+def rank_floats_to_make_ints(output_dict):
+	# order the floating point numbers
+	float_set = set()
+	for term in output_dict:
+		float_set.add(output_dict[term])
+	float_list = list(float_set)
+	float_list.sort()
+	if float_list[0] != 0:
+		float_list.instert(0,0) # only want zero to be given a value of zero
+	# new_dict
+	new_dict = output_dict
+	for term in new_dict:
+		new_dict[term] = float_list.index(new_dict[term])
+	return new_dict
+
+
+def word_cloud_output(input_dict):
+	output_dict = dict()
+	for term in input_dict:
+		score = 0
+		for file_name in input_dict[term]:
+			score += input_dict[term][file_name]
+		output_dict[term] = score
+	# modify contents
+	new_dict = rank_floats_to_make_ints(output_dict)
+	return new_dict
+
