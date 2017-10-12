@@ -3,6 +3,7 @@ import os
 import glob
 import nltk
 from nltk.corpus import stopwords
+import math
 
 
 
@@ -91,10 +92,10 @@ def get_terms():
 	# return
 	return term_dict
 
-def create_matrix():
+def create_tf_matrix():
 	# data
 	file_name_list = get_file_names()
-	file_name_list.insert(0, "test")
+	file_name_list.insert(0, "")
 	term_dict = get_terms()
 	# term_list
 	term_list = list() # a list of lists
@@ -115,3 +116,36 @@ def create_matrix():
 def print_matrix(matrix):
 	for array in matrix:
 		print(" ".join(["{:>16}".format(item) for item in array]))
+
+
+
+# IDF SCORES
+# idf numerator
+def get_idf_numerator():
+	# return number of files sourced
+	return round(float(len(get_file_names())), 2)
+
+# idf denominator
+def get_idf_denominator(term, term_dict):
+	return round(float(1 + len(term_dict[term])), 2) # 1 to void zero denominator
+
+# idf
+def get_idf(term, term_dict, base, idf_numerator):
+	idf_denominator = get_idf_denominator(term, term_dict)
+	return round(float(math.log(idf_numerator/idf_denominator, base)), 2)
+
+# idf_boolean
+def td_idf_boolean(term_dict, base):
+	# data
+	idf_numerator = get_idf_numerator()
+	# create the return object
+	idf_boolean_dict = term_dict
+	# populate the return object
+	for term in idf_boolean_dict:
+		# data
+		idf_denominator = get_idf_denominator(term, term_dict)
+		idf = get_idf(term, term_dict, base, idf_numerator)
+		for file_name in idf_boolean_dict[term]:
+			idf_boolean_dict[term][file_name] *= idf
+	# return
+	return idf_boolean_dict
