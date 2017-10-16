@@ -111,15 +111,15 @@ if __name__ == '__main__':
 	# Succint empirical demonstration of the triangle inequality holding for Jaccard measures
 	print("")
 	print("Empirical demonstration of the triangle inequality holding for Jaccard Distance")
-	example_count = 0
-	incorrect_count = 0
-	for first_item in wf_list:
+	example_count = 0 # keep track of examples generated
+	incorrect_count = 0 # keep track of number triangle inequality failures
+	for first_item in wf_list: # use each item in wf_list
 		second_item_list = [w for w in wf_list]
 		second_item_list.remove(first_item)
-		for second_item in second_item_list:
+		for second_item in second_item_list: # use every other item in wf_list less the first_item
 			third_item_list = [s for s in second_item_list]
 			third_item_list.remove(second_item)
-			for third_item in third_item_list:
+			for third_item in third_item_list: # use every other item in wf_list less first_item, second_item
 				a = first_item
 				b = second_item
 				c = third_item
@@ -127,7 +127,7 @@ if __name__ == '__main__':
 				jd_ab = jaccard_distance(a, b)
 				jd_bc = jaccard_distance(b, c)
 				example_count += 1
-				if jd_ac > (jd_ab + jd_bc):
+				if jd_ac > (jd_ab + jd_bc): # if ac > ab + bc, then the triangle inequality has failed
 					incorrect_count += 1
 					print("error")
 	print("Triangle Inequality obtains for {}/{} checks i.e. all permutations of the word features".format(example_count - incorrect_count, example_count))
