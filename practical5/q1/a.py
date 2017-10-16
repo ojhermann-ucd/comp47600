@@ -85,7 +85,8 @@ if __name__ == '__main__':
 	wf_list = list()
 	# for i in range(7, 17):
 	# 	wf_list.append(" ".join(list("{0:b}".format(i))))
-	wf_list = ["a", "b", "c", "a b", "b c", "a c"]
+	# wf_list = ["a", "b", "c", "a b", "b c", "a c"]
+	wf_list = ["the talking heads are my favourite band", "the talking heads are my favourite musical group", "i enjoy listening to the talking heads", "i hate talking heads on fox news", "fox news is a gaggle of iditotic talking heads", "talking heads annoy me a great deal"]
 
 	# Word Features
 	print("Word Features")
@@ -129,5 +130,7 @@ if __name__ == '__main__':
 				if jd_ac > (jd_ab + jd_bc):
 					incorrect_count += 1
 					print("error")
-	print("Triangle Inequality Obtains for {}/{} checks i.e. all permutations of the word features".format(example_count - incorrect_count, example_count))
+	print("Triangle Inequality obtains for {}/{} checks i.e. all permutations of the word features".format(example_count - incorrect_count, example_count))
 	print("")
+
+	print("note that you can extend the list of phrases arebitratily, but eventually you will encounter a combinatorial explosion")
