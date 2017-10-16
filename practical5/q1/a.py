@@ -108,7 +108,7 @@ if __name__ == '__main__':
 	print("")
 	print("Analytic Proof of Triangle Inequality Satisfaction: {}".format(analytic_proof))
 
-	# Succint empirical demonstration of the triangle inequality holding for Jaccard measures
+	# Empirical demonstration of the triangle inequality holding for Jaccard measures
 	print("")
 	print("Empirical demonstration of the triangle inequality holding for Jaccard Distance")
 	example_count = 0 # keep track of examples generated
@@ -129,7 +129,7 @@ if __name__ == '__main__':
 				example_count += 1
 				if jd_ac > (jd_ab + jd_bc): # if ac > ab + bc, then the triangle inequality has failed
 					incorrect_count += 1
-					print("error")
+					print("{} > {} + {}".format(jd_ac, jd_ab, jd_bc))
 	print("Triangle Inequality obtains for {}/{} checks i.e. all permutations of the word features".format(example_count - incorrect_count, example_count))
 	print("")
 
