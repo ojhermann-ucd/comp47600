@@ -81,18 +81,11 @@ def pairs_in_a_list_matrix_with_labels(a_list, metric):
 
 if __name__ == '__main__':
 
-
 	# word features
-	wf_1 = "0 0 0"
-	wf_2 = "0 0 1"
-	wf_3 = "0 1 0"
-	wf_4 = "0 1 1"
-	wf_5 = "1 0 0"
-	wf_6 = "1 0 1"
-	wf_7 = "1 1 0"
-	wf_8 = "1 1 1"
-	wf_list = [wf_1, wf_2, wf_3, wf_4, wf_5, wf_6, wf_7, wf_8]
-	
+	wf_list = list()
+	# for i in range(7, 17):
+	# 	wf_list.append(" ".join(list("{0:b}".format(i))))
+	wf_list = ["a", "b", "c", "a b", "b c", "a c"]
 
 	# Word Features
 	print("Word Features")
@@ -115,14 +108,26 @@ if __name__ == '__main__':
 	print("Analytic Proof of Triangle Inequality Satisfaction: {}".format(analytic_proof))
 
 	# Succint empirical demonstration of the triangle inequality holding for Jaccard measures
-	demo_list = [w.split() for w in wf_list]
-
 	print("")
-	print("Succint empirical demonstration of the triangle inequality holding for Jaccard Distance")
-	for d in demo_list:
-		a = d[0]
-		b = d[1]
-		c = d[2]
-		print("a = {}, b = {}, c = {}".format(a, b, c), end = " --> ")
-		print("JD(a,c) = {} \u2264 {} = JD(a,b) + JD(b,c) = {} + {}".format(jaccard_distance(a, c), jaccard_distance(a,b) + jaccard_distance(b, c), jaccard_distance(a,b), jaccard_distance(b,c)))
-		print("")
+	print("Empirical demonstration of the triangle inequality holding for Jaccard Distance")
+	example_count = 0
+	incorrect_count = 0
+	for first_item in wf_list:
+		second_item_list = [w for w in wf_list]
+		second_item_list.remove(first_item)
+		for second_item in second_item_list:
+			third_item_list = [s for s in second_item_list]
+			third_item_list.remove(second_item)
+			for third_item in third_item_list:
+				a = first_item
+				b = second_item
+				c = third_item
+				jd_ac = jaccard_distance(a, c)
+				jd_ab = jaccard_distance(a, b)
+				jd_bc = jaccard_distance(b, c)
+				example_count += 1
+				if jd_ac > (jd_ab + jd_bc):
+					incorrect_count += 1
+					print("error")
+	print("Triangle Inequality Obtains for {}/{} checks i.e. all permutations of the word features".format(example_count - incorrect_count, example_count))
+	print("")

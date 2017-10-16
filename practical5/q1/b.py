@@ -31,15 +31,4 @@ def qs_distance(string_1, string_2):
 
 if __name__ == '__main__':
 
-	test_string = "12345"
-	test_list = list(test_string)
-	length_of_test_list = len(test_list)
-	jaccard_empirical_list = list()
-	for j in range(length_of_test_list):
-		for k in range(j+1, length_of_test_list + 1, 1):
-			jaccard_empirical_list.append(" ".join(test_list[j:k]))
-	jaccard_empirical_list.sort(key = len)
-	print("")
-	print("Empircal Demonstration of the Triangle Inequality Holding for Jaccard Distance")
-	for item in jaccard_empirical_list:
-		print("{} = JD({}, {})".format(qs_distance("1 2 3 4 5", item), "1 2 3 4 5", item))
+	
