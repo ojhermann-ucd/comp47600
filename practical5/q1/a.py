@@ -124,3 +124,8 @@ if __name__ == '__main__':
 	print("Empircal Demonstration of the Triangle Inequality Holding for Jaccard Indexing")
 	for item in jaccard_empirical_list:
 		print("{} = JD({}, {})".format(jaccard_index("1 2 3 4 5", item), "1 2 3 4 5", item))
+
+	# write up outline
+	analytic_proof = "https://arxiv.org/pdf/1612.02696.pdf"
+	print("")
+	print("Analytic Proof of Triangle Inequality Satisfcation by Jaccard Distance: {}".format(analytic_proof))
