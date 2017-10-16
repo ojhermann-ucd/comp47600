@@ -83,13 +83,15 @@ if __name__ == '__main__':
 
 
 	# word features
-	wf_1 = "My favourite band is the Talking Heads".lower()
-	wf_2 = "My favourite musicians are the Talking Heads".lower()
-	wf_3 = "I like the Talking Heads".lower()
-	wf_4 = "I don't like television featuring talking heads".lower()
-	wf_5 = "Many racists favour the opinions of talking heads on Fox News".lower()
-	wf_6 = "I like the phrase talking heads".lower()
-	wf_list = [wf_1, wf_2, wf_3, wf_4, wf_5, wf_6]
+	wf_1 = "0 0 0"
+	wf_2 = "0 0 1"
+	wf_3 = "0 1 0"
+	wf_4 = "0 1 1"
+	wf_5 = "1 0 0"
+	wf_6 = "1 0 1"
+	wf_7 = "1 1 0"
+	wf_8 = "1 1 1"
+	wf_list = [wf_1, wf_2, wf_3, wf_4, wf_5, wf_6, wf_7, wf_8]
 	
 
 	# Word Features
@@ -107,25 +109,20 @@ if __name__ == '__main__':
 	print("")
 	pairs_in_a_list_matrix_with_labels(wf_list, "ji")
 
-	# Empirical demonstration of the triangle inequality holding for Jaccard measures
-	test_string = "12345"
-	test_list = list(test_string)
-	length_of_test_list = len(test_list)
-	jaccard_empirical_list = list()
-	for j in range(length_of_test_list):
-		for k in range(j+1, length_of_test_list + 1, 1):
-			jaccard_empirical_list.append(" ".join(test_list[j:k]))
-	jaccard_empirical_list.sort(key = len)
-	print("")
-	print("Empircal Demonstration of the Triangle Inequality Holding for Jaccard Distance")
-	for item in jaccard_empirical_list:
-		print("{} = JD({}, {})".format(jaccard_distance("1 2 3 4 5", item), "1 2 3 4 5", item))
-	print("")
-	print("Empircal Demonstration of the Triangle Inequality Holding for Jaccard Indexing")
-	for item in jaccard_empirical_list:
-		print("{} = JD({}, {})".format(jaccard_index("1 2 3 4 5", item), "1 2 3 4 5", item))
-
-	# write up outline
+	#
 	analytic_proof = "https://arxiv.org/pdf/1612.02696.pdf"
 	print("")
-	print("Analytic Proof of Triangle Inequality Satisfcation by Jaccard Distance: {}".format(analytic_proof))
+	print("Analytic Proof of Triangle Inequality Satisfaction: {}".format(analytic_proof))
+
+	# Succint empirical demonstration of the triangle inequality holding for Jaccard measures
+	demo_list = [w.split() for w in wf_list]
+
+	print("")
+	print("Succint empirical demonstration of the triangle inequality holding for Jaccard Distance")
+	for d in demo_list:
+		a = d[0]
+		b = d[1]
+		c = d[2]
+		print("a = {}, b = {}, c = {}".format(a, b, c), end = " --> ")
+		print("JD(a,c) = {} \u2264 {} = JD(a,b) + JD(b,c) = {} + {}".format(jaccard_distance(a, c), jaccard_distance(a,b) + jaccard_distance(b, c), jaccard_distance(a,b), jaccard_distance(b,c)))
+		print("")
