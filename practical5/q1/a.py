@@ -133,4 +133,4 @@ if __name__ == '__main__':
 	print("Triangle Inequality obtains for {}/{} checks i.e. all permutations of the word features".format(example_count - incorrect_count, example_count))
 	print("")
 
-	print("note that you can extend the list of phrases arebitratily, but eventually you will encounter a combinatorial explosion")
+	print("Note: you can extend the list of phrases arbitrarily, but eventually you will encounter a combinatorial explosion")
