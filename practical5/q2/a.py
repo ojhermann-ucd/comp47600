@@ -66,4 +66,5 @@ if __name__ == '__main__':
 		print("Vector: {}".format(v))
 		print("Cosine Similarity: {}".format(cosine_similarity(vector_list[0], v)))
 		print("")
+		print("")
 		count += 1
