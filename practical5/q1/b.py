@@ -65,10 +65,10 @@ if __name__ == '__main__':
 				example_count += 1
 				if jd_ac > (jd_ab + jd_bc): # if ac > ab + bc, then the triangle inequality has failed
 					incorrect_count += 1
-					print("Failure {}: QS({},{}) = {} > {} = {} + {} = QS({},{}) + QS({},{})".format(incorrect_count, a, c, jd_ac, round(jd_ab + jd_bc,2), jd_ab, jd_bc, a,b,b,c))
+					print("Failure {}: QS(\"{}\",\"{}\") = {} > {} = {} + {} = QS(\"{}\",\"{}\") + QS(\"{}\",\"{}\")".format(incorrect_count, a, c, jd_ac, round(jd_ab + jd_bc,2), jd_ab, jd_bc, a,b,b,c))
 	print("")
 	fail_percent = round(incorrect_count / example_count, 2)
-	print("Triangle Inequality obtains for {}/{} checks i.e. {} of the word feature permutations failed".format(example_count - incorrect_count, example_count, fail_percent))
+	print("Triangle Inequality obtains for {}/{} checks i.e. {} of the word feature permutations failed to satisfy triangle inequality".format(example_count - incorrect_count, example_count, fail_percent))
 	print("")
 
-	print("Note: you can extend the list of phrases arbitrarily, but eventually you will encounter a combinatorial explosion")
+	print("Note: you can extend the list of phrases arbitrarily, but eventually you will encounter a combinatorial explosion when tyring to exhaustively enumerate all possible conditions")
