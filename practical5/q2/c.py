@@ -48,3 +48,11 @@ if __name__ == '__main__':
 		print("Euclidean Distance: {}".format(round(spatial.distance.euclidean(scipy_vectors[0], sv),2)))
 		print("")
 		count += 1
+
+	print("My calculated vales of Cosine Similarity match those calculated by SciPy")
+	print("There appears to be a generally positive association between the Euclidean Distance and Cosine Distance, which is to be expected: both are measures of similarity.")
+	print("But more importantly, we want these measures to remain distinct: Cosine Similarity/Distance abstracts from the size of the text, whereas Euclidean measures do not.")
+	print("In this regard, Cosine Similarity is measuring similarity of texts based on a normalised input i.e. where absolute frequency of occurance does not matter; we only care about releative frequency.")
+	print("These techniques have distinct applications and context and intention will suggest which is the more appropriate metric, though there will be some commonality in their respective outputs.")
+
+
