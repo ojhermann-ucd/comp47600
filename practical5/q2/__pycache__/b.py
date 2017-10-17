@@ -1,40 +1,7 @@
 # imports
 import math
 import td_idf
-
-
-
-# TF-IDF functions
-def tf_idf_vectors(document, tf_idf_dict):
-	vector = dict() # instantiate the vector
-	for term in tf_idf_dict:
-		if document in tf_idf_dict[term]:
-			if term in vector:
-				vector[term] += tf_idf_dict[term][document]
-			else:
-				vector[term] = tf_idf_dict[term][document]
-		else:
-			vector[term] = 0
-	return vector
-
-
-# COSINE SIMILARITY
-def dot_product(A, B):
-	dp = 0
-	for key in A:
-		dp += A[key] * B[key]
-	return dp
-
-def magnitude(A):
-	sum_of_A = 0
-	for key in A:
-		sum_of_A += A[key]**2
-	return math.sqrt(sum_of_A)
-
-def cosine_similarity(V1, V2):
-	numerator = dot_product(V1, V2)
-	denominator = magnitude(V1) * magnitude(V2)
-	return round(float(numerator / denominator), 2)
+import a
 
 
 
@@ -65,5 +32,6 @@ if __name__ == '__main__':
 		print("Original: {}".format(document_list[count]))
 		print("Vector: {}".format(v))
 		print("Cosine Similarity: {}".format(cosine_similarity(vector_list[0], v)))
+		print("")
 		print("")
 		count += 1
