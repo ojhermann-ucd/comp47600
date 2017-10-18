@@ -61,15 +61,38 @@ if __name__ == '__main__':
 	normal_examples = normal_tweets[0:4:1]
 
 	print("Normal Tweets Levenshtein Distance from my_tweet")
-	count = 1
+	count = 0
+	normal_average = 0
 	for n in normal_examples:
-		print("Normal_{}: {}".format(count, editdistance.eval(my_tweet, n)))
+		l_score = editdistance.eval(my_tweet, n)
+		print("Normal_{}: {}".format(count, l_score))
+		normal_average += l_score
 		count += 1
+	print("")
+	normal_average /= count
+	print("Average Levenshtein Score for a Normal Tweet: {}".format(round(normal_average,2)))
+	print("")
 	print("")
 
 	print("Spam Tweets Levenshtein Distance from my_tweet")
-	count = 1
+	count = 0
+	spam_average = 0
 	for s in spam_examples:
-		print("Spam_{}: {}".format(count, editdistance.eval(my_tweet, s)))
+		l_score = editdistance.eval(my_tweet, s)
+		print("Spam_{}: {}".format(count, l_score))
+		spam_average += l_score
 		count += 1
+	print("")
+	spam_average /= count
+	print("Average Levenshtein Score for a Spam Tweet: {}".format(round(spam_average,2)))
+	print("")
+	print("")
+
+	print("Ratio of spam_average to normal_average: {}".format(round(spam_average / normal_average, 2)))
+	print("")
+	print("The spam tweets distinguish themselves from my tweet by being, on average, having less distance than normal tweets")
+	print("This is to be expected as spam tweets, as we were asked to construct them, attempt to mimic normla tweets.")
+	print("Similarly, each of the normal tweets is relatively qutie different, especially keeping in mind that twitter has a 140 character limit on tweet sizes")
+	print("Similar results obtain for each of the normal tweets, as we'd expect given the spamming strategy we've employed.")
+	print("")
 	print("")
