@@ -6,7 +6,7 @@ import editdistance
 
 # DATA
 normal_tweet_list = [
-	"Dear @POTUS: Based on your weak response to Puerto Rico & remarks about the Virgin Islands' President, I made this cheat sheet to help you.", # https://twitter.com/tedlieu/status/920381148865314816
+	"Dear @POTUS: Based on your weak response to Puerto Rico & remarks about the Virgin Islands' President, I made this cheat sheet to help you.",
 	"Pigs. In the Pacific.#exploringpigs",	
 	"General Kelly, we are so very sorry that @potus has dragged your son’s memory into his web of lies.",
 	"i saw a thread about this bizarre racist dingus tweet, then i looked at the replies to the original and it plays so well as a setup and punchline",
@@ -22,4 +22,14 @@ spam_elements = [
 ]
 
 spam_add_ons = ["".join(x) for x in list(itertools.combinations(spam_elements, 2))]
+
+
+
+def create_data(tweet, add_ons):
+	output_list = [tweet]
+	for i in range(len(add_ons)):
+		output_list.append(tweet + add_ons[i])
+	return output_list
+
+
 
