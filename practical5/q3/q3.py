@@ -14,14 +14,22 @@ normal_tweets = [
 ]
 
 focus_tweet = normal_tweets[4].split()
-# ['Robert', 'Web', '@arobertwebb', 'Retweeted', 'Marcoooos!', '@marcusbrig', 'The', 'Young', 'Ones', 'On', 'Comic', 'Relief', 'THIS...sometimes', 'I', 'need', 'this.', 'https://www.youtube.com/watch?v=NhqlrQ64f2Y']
 first_name_dict = {"Roberto":0, "Roger":0}
 second_name_dict = {"Webb":1, "Wes":1}
 at_dict_1 = {"@robertowebb":2, "@rogerailes":2}
 at_dict_2 = {"@mugabi":5, "@marcusaurelius":5}
 url_dict = {"https://www.youtube.com/watch?v=ERw-Frq6knI":16, "https://www.youtube.com/watch?v=dTcvmmOkqJI":16}
 
-
+def spam_index(integer):
+	length = len(list("{0:b}".format(integer - 1))) # size of containters
+	spam_indices = list()
+	for k in range(integer):
+		binary_elements = list("{0:b}".format(k))
+		temp_list = [0 for k in range(length - len(binary_elements))]
+		for b in binary_elements:
+			temp_list.append(int(b))
+		spam_indices.append(temp_list)
+	return spam_indices
 
 
 
@@ -35,3 +43,7 @@ def create_data(tweet, spam_elements, additions):
 	for i in range(len(add_ons)):
 		output_list.append(tweet + add_ons[i])
 	return output_list
+
+my_spam_index = spam_index(32)
+for item in my_spam_index:
+	print(item)
