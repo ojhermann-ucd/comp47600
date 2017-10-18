@@ -1,7 +1,7 @@
 __author__ = 'user'
 
-import nltk.metrics
-import distance
+import nltk.metrics.distance
+# import distance
 
 #  transposition flag allows transpositions edits (e.g., “ab” -> “ba”),
 
