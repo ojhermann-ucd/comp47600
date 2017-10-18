@@ -20,6 +20,14 @@ at_dict_1 = {"@robertowebb":2, "@rogerailes":2}
 at_dict_2 = {"@mugabi":5, "@marcusaurelius":5}
 url_dict = {"https://www.youtube.com/watch?v=ERw-Frq6knI":16, "https://www.youtube.com/watch?v=dTcvmmOkqJI":16}
 
+spam_list = [
+	[0, "Roberto", "Roger"],
+	[1, "Webb", "Wes"],
+	[2, "@robertowebb", "@rogerailes"],
+	[5, "@mugabi", "@marcusaurelius"],
+	[16, "https://www.youtube.com/watch?v=ERw-Frq6knI", "https://www.youtube.com/watch?v=dTcvmmOkqJI"],
+]
+
 def spam_index(integer):
 	length = len(list("{0:b}".format(integer - 1))) # size of containters
 	spam_indices = list()
@@ -31,19 +39,37 @@ def spam_index(integer):
 		spam_indices.append(temp_list)
 	return spam_indices
 
+def make_spam(tweet, spam_index, spam_list):
+	tweet_list = tweet.split()
+	count = 0
+	for index in spam_index:
+		spam_change = spam_list[count][index + 1]
+		tweet_index = spam_list[count][0]
+		tweet_list[tweet_index] = spam_change
+		count += 1
+	return " ".join(tweet_list)
 
 
-# DATA FUNCTIONS
-def spam_add_ons(spam_elements, additions):
-	return ["".join(x) for x in list(itertools.combinations(spam_elements, additions))]
 
-def create_data(tweet, spam_elements, additions):
-	output_list = list()
-	add_ons = spam_add_ons(spam_elements, additions)
-	for i in range(len(add_ons)):
-		output_list.append(tweet + add_ons[i])
-	return output_list
+if __name__ == '__main__':
 
-my_spam_index = spam_index(32)
-for item in my_spam_index:
-	print(item)
+	my_tweet = normal_tweets[4]
+	spam_indices = spam_index(32)
+	spam_examples = list()
+	for si in spam_indices:
+		spam_examples.append(make_spam(my_tweet, si, spam_list))
+	normal_examples = normal_tweets[0:4:1]
+
+	print("Normal Tweets Levenshtein Distance from my_tweet")
+	count = 1
+	for n in normal_examples:
+		print("Normal_{}: {}".format(count, editdistance.eval(my_tweet, n)))
+		count += 1
+	print("")
+
+	print("Spam Tweets Levenshtein Distance from my_tweet")
+	count = 1
+	for s in spam_examples:
+		print("Spam_{}: {}".format(count, editdistance.eval(my_tweet, s)))
+		count += 1
+	print("")
