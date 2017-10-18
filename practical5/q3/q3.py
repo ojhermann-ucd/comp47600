@@ -5,31 +5,52 @@ import editdistance
 
 
 # DATA
-normal_tweet_list = [
-	"Dear @POTUS: Based on your weak response to Puerto Rico & remarks about the Virgin Islands' President, I made this cheat sheet to help you.",
-	"Pigs. In the Pacific.#exploringpigs",	
-	"General Kelly, we are so very sorry that @potus has dragged your son’s memory into his web of lies.",
-	"i saw a thread about this bizarre racist dingus tweet, then i looked at the replies to the original and it plays so well as a setup and punchline",
-	"Anybody that lived for years in a 4 x 4 cage is not intimidated by a loudmouth with a 4-dollar haircut.",
+tweet_1 = "Mark Sparrow @Markgsparrow Just a quick reminder that it's almost time to start preparing for those Halloween 'trick or treaters'."
+
+spam_elements_1 = [
+	"#JackSparrow",
+	"#caribbean",
+	"#pirates",
+	"#johnny",
+	"#depp",
+	"https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwiyou_Y4_nWAhXIt-0KHcI3CfYYABAAGgJkZw&ohost=www.google.ie&cid=CAESQeD2OwnLHoY9fjS50cd-M3vP0N9jVdSnx1nrM_6BetOc9YbRTTQWgItmbNYK1pepFqI7u390fNxm7ZRcMbHiu-iA&sig=AOD64_1_z5nLfU68bmH0r7WgCCy2wgDUvg&q=&ved=0ahUKEwifverY4_nWAhUFM8AKHT1UCNoQ0QwIJQ&adurl="
 ]
 
-spam_elements = [
-	"#Kardashians",
-	"#SexTape",
-	"#XXX",
-	"#BonerPills",
-	"#Sex",
+
+tweet_2 = "@reginalddhunter Reginald D Hunter Retweeted Mark Sparrow @Markgsparrow Just a quick reminder that it's almost time to start preparing for those Halloween 'trick or treaters'."
+
+spam_elements_2 = [
+	"@hunterboots",
+	"#boots",
+	"#https://www.google.ie/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjYgZH25fnWAhXRFsAKHSu9CH8QFgjAAjAA&url=https%3A%2F%2Fwww.hunterboots.com%2F&usg=AOvVaw0OVbqIevrwiO3h5rbe7q23",
+	"#rainyday",
+	"@boots",
+	"#wet",
 ]
 
-spam_add_ons = ["".join(x) for x in list(itertools.combinations(spam_elements, 2))]
 
+# DATA FUNCTIONS
+def spam_add_ons(spam_elements, additions):
+	return ["".join(x) for x in list(itertools.combinations(spam_elements, additions))]
 
-
-def create_data(tweet, add_ons):
-	output_list = [tweet]
+def create_data(tweet, spam_elements, additions):
+	output_list = list()
+	add_ons = spam_add_ons(spam_elements, additions)
 	for i in range(len(add_ons)):
 		output_list.append(tweet + add_ons[i])
 	return output_list
 
 
 
+# GENERATE THE DATA
+print("Levenshtein Distance for \"{}\" and Spam Versions".format(tweet_1))
+for spam in create_data(tweet_1, spam_elements_1, 2):
+	print("Spam Elements: {}".format(spam))
+	print(editdistance.eval(tweet_1, spam))
+print("")
+
+print("Levenshtein Distance for \"{}\" and Spam Versions".format(tweet_2))
+for spam in create_data(tweet_2, spam_elements_2, 2):
+	print("Spam Elements: {}".format(spam))
+	print(editdistance.eval(tweet_2, spam))
+print("")
