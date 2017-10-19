@@ -13,13 +13,6 @@ normal_tweets = [
 	"Robert Web @arobertwebb Retweeted Marcoooos! @marcusbrig The Young Ones On Comic Relief THIS...sometimes I need this. https://www.youtube.com/watch?v=NhqlrQ64f2Y",
 ]
 
-focus_tweet = normal_tweets[4].split()
-first_name_dict = {"Roberto":0, "Roger":0}
-second_name_dict = {"Webb":1, "Wes":1}
-at_dict_1 = {"@robertowebb":2, "@rogerailes":2}
-at_dict_2 = {"@mugabi":5, "@marcusaurelius":5}
-url_dict = {"https://www.youtube.com/watch?v=ERw-Frq6knI":16, "https://www.youtube.com/watch?v=dTcvmmOkqJI":16}
-
 spam_list = [
 	[0, "Roberto", "Roger"],
 	[1, "Webb", "Wes"],
