@@ -75,58 +75,43 @@ def main():
 	accuracy = getAccuracy(testSet, predictions)
 	print('Accuracy: ' + repr(accuracy) + '%')
 
-def main_with_variation(split, k):
+def main_modified(split, k):
 	# prepare data
 	trainingSet=[]
 	testSet=[]
 	loadDataset('iris.csv', split, trainingSet, testSet)
+	while len(trainingSet) < k:
+		loadDataset('iris.csv', split, trainingSet, testSet) # added to repeat until appropriate size is achieved
 	# print('Train set: ' + repr(len(trainingSet)))
 	# print('Test set: ' + repr(len(testSet)))
 	# generate predictions
 	predictions=[]
-	for x in range(len(testSet)):
-		neighbors = getNeighbors(trainingSet, testSet[x], k)
-		result = getResponse(neighbors)
-		predictions.append(result)
-		# print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
-	accuracy = getAccuracy(testSet, predictions)
-	# print('Accuracy: ' + repr(accuracy) + '%')
+	if len(trainingSet) < k:
+		print("len(trainingSet) < k when split = {} and k = {}".format(split, k)) # check and notification
+	else:
+		for x in range(len(testSet)):
+			neighbors = getNeighbors(trainingSet, testSet[x], k)
+			result = getResponse(neighbors)
+			predictions.append(result)
+			# print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
+		accuracy = getAccuracy(testSet, predictions)
+		# print('Accuracy: ' + repr(accuracy) + '%')
 
-def main_with_variation_min_legth_test(split, k):
-	# prepare data
-	trainingSet=[]
-	testSet=[]
-	while len(trainingSet) < k - 1: # solution to the failures
-		loadDataset('iris.csv', split, trainingSet, testSet)
-	# print('Train set: ' + repr(len(trainingSet)))
-	# print('Test set: ' + repr(len(testSet)))
-	# generate predictions
-	predictions=[]
-	for x in range(len(testSet)):
-		neighbors = getNeighbors(trainingSet, testSet[x], k)
-		result = getResponse(neighbors)
-		predictions.append(result)
-		# print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
-	accuracy = getAccuracy(testSet, predictions)
-	# print('Accuracy: ' + repr(accuracy) + '%')
 
 if __name__ == '__main__':
 
 	# SYSTEMATICALLY VARY THE SIZE OF SPLIT AND K
+	print("SYSTEMATICALLY VARY THE SIZE OF SPLIT AND K")
 	for k in range(1, 21, 1):
 		for split in range(k, 91, 1):
 			try:
-				main_with_variation(float(split/100), k)
+				main_modified(float(split/100), k)
 			except:
 				print(split, k, "failure")
+	print("")
 	"""
 	If len(trainingSet) < k, the code will not run
 	- line 38 --> line 32 --> line 18 --> line 17
-	- solution: in main_with_variation(split, k), run loadDataset until len(trainingSet) > k -1
+	- tries to find k neighbours but there aren't that many in distances b/c there aren't that many in trainingSet
+	- solution: recalculate trainingSet until it's large enough and then move on.
 	"""
-	for k in range(1, 21, 1):
-		for split in range(k, 91, 1):
-			try:
-				main_with_variation_min_legth_test(float(split/100), k)
-			except:
-				print(split, k, "failure")
