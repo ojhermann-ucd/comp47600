@@ -6,6 +6,7 @@ import csv
 import random
 import math
 import operator
+from collections import defaultdict # brining in to make things faster for Q1
 
 def loadDataset(filename, split, trainingSet=[] , testSet=[]):
 	with open(filename, 'r') as csvfile:
@@ -96,16 +97,32 @@ def main_modified(split, k):
 			# print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
 		accuracy = getAccuracy(testSet, predictions)
 		# print('Accuracy: ' + repr(accuracy) + '%')
+		# return
+		return [split, k, accuracy]
 
 
 if __name__ == '__main__':
+
+	# PRINT TOGGLE
+	print_status = False
+
+	# results_container
+	results_container = defaultdict(dict)
 
 	# SYSTEMATICALLY VARY THE SIZE OF SPLIT AND K
 	print("SYSTEMATICALLY VARY THE SIZE OF SPLIT AND K")
 	for k in range(1, 21, 1):
 		for split in range(k, 91, 1):
 			try:
-				main_modified(float(split/100), k)
+				if print_status:
+					result = main_modified(float(split/100), k)
+					print("Split: {}".format(result[0]))
+					print("k: {}".format(result[1]))
+					print("Accuracy: {}".format(result[2]))
+					print("")
+				else:
+					result = main_modified(float(split/100), k)
+					results_container[result[1]][result[0]] = result[2]
 			except:
 				print(split, k, "failure")
 	print("")
@@ -115,3 +132,6 @@ if __name__ == '__main__':
 	- tries to find k neighbours but there aren't that many in distances b/c there aren't that many in trainingSet
 	- solution: recalculate trainingSet until it's large enough and then move on.
 	"""
+
+	# PLOT ACCURACY FOR CHANGES
+	
