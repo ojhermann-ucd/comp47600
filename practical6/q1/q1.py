@@ -7,6 +7,9 @@ import random
 import math
 import operator
 from collections import defaultdict # brining in to make things faster for Q1
+import plotly.plotly as py
+import plotly.graph_objs as go
+
 
 def loadDataset(filename, split, trainingSet=[] , testSet=[]):
 	with open(filename, 'r') as csvfile:
@@ -112,7 +115,7 @@ if __name__ == '__main__':
 	# SYSTEMATICALLY VARY THE SIZE OF SPLIT AND K
 	print("SYSTEMATICALLY VARY THE SIZE OF SPLIT AND K")
 	for k in range(1, 21, 1):
-		for split in range(k, 91, 1):
+		for split in range(1, 91, 1):
 			try:
 				if print_status:
 					result = main_modified(float(split/100), k)
@@ -130,8 +133,16 @@ if __name__ == '__main__':
 	If len(trainingSet) < k, the code will not run
 	- line 38 --> line 32 --> line 18 --> line 17
 	- tries to find k neighbours but there aren't that many in distances b/c there aren't that many in trainingSet
-	- solution: recalculate trainingSet until it's large enough and then move on.
+	- solution: recalculate trainingSet in a while loop until it's large enough and then move on.
 	"""
 
-	# PLOT ACCURACY FOR CHANGES
-	
+	# # PLOT ACCURACY FOR CHANGES
+	k_list = [1, 5, 10, 15, 20]
+	for k in k_list:
+		k_data = results_container[k]
+		the_x = [strip for strip in k_data]
+		the_y = [k_data[strip] for strip in k_data]
+		print("k = {}".format(k))
+		print(the_x)
+		print(the_y)
+		print("")
