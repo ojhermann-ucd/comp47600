@@ -49,7 +49,8 @@ def generate_test_training_pairs(k_data_lists):
 
 
 def euclidean_distance(instance_1, instance_2, length):
-	for j in range(length):
+	distance = 0
+	for j in range(length - 1):
 		distance += math.pow(instance_1[j] - instance_2[j], 2)
 	return math.sqrt(distance)
 
@@ -63,16 +64,19 @@ def get_k_neighbours(training_list, test_instance, k):
 	return [distances[j][0] for j in range(k)]
 
 def get_response(neighbours):
-	class_votes = defaultdict(list)
+	class_votes = dict()
 	for n in neighbours:
-		class_votes[n[-1]] += 1
+		if n[-1] in class_votes:
+			class_votes[n[-1]] += 1
+		else:
+			class_votes[n[-1]] = 1
 	sorted_votes = sorted(class_votes.items(), key=operator.itemgetter(1), reverse=True)
 	return sorted_votes[0][0]
 
 def get_predictions(training_list, test_list, k):
 	predictions = list()
 	for test_instance in test_list:
-		neighbours = get_k_neighbours(training_list, test_instance, k):
+		neighbours = get_k_neighbours(training_list, test_instance, k)
 		predictions.append(get_response(neighbours))
 	return predictions
 
@@ -98,4 +102,12 @@ if __name__ == '__main__':
 	test_training_pairs = generate_test_training_pairs(k_data_lists)
 
 	# analysis
-	
+	average_accuracy = 0
+	for pair in test_training_pairs:
+		test_list = pair[0]
+		training_list = pair[1]
+		predictions = get_predictions(training_list, test_list, k)
+		accuracy = get_accuracy(test_list, predictions)
+		average_accuracy += accuracy
+	average_accuracy /= k
+	print("{}-Average Accuracy: {}".format(k, average_accuracy))
