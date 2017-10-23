@@ -99,23 +99,48 @@ def main_modified(split, k):
 		# return
 		return [split, k, accuracy]
 
-def loadDataset_k_folding_naive(filename, trainingSet=[] , testSet=[], k):
+def loadDataset_k_folding_naive(filename, k):
 	with open(filename, 'r') as csvfile:
-	    lines = csv.reader(csvfile)
-	    dataset = list(lines)
-	    for x in range(len(dataset)-1):
-	        for y in range(4):
-	            dataset[x][y] = float(dataset[x][y])
-        # folding happens here
-        k_data_sets = [[] for x in range(k)]
-        k_index = 0
-        for j in range(len(dataset)):
-        	k_data_sets[k_index].append(dataset[j])
-        	k_index += 1
-        	if k_index == k:
-        		k_index = 0
-        # return
-        return k_data_sets
+		lines = csv.reader(csvfile)
+		dataset = list(lines)
+		for x in range(len(dataset)-1):
+			for y in range(4):
+				dataset[x][y] = float(dataset[x][y])
+				# folding happens here
+				k_data_sets = [[] for x in range(k)]
+				k_index = 0
+				for j in range(len(dataset)):
+					k_data_sets[k_index].append(dataset[j])
+					k_index += 1
+					if k_index == k:
+						k_index = 0
+		# return
+		return k_data_sets
+
+def generate_test_training_pairs(k_data_sets):
+	k = len(k_data_sets)
+	training_pairs = list()
+	for j in range(k):
+		test_set = k_data_sets[j]
+		training_set = list()
+		for h in range(k):
+			if h != j:
+				training_set += k_data_sets[h]
+		training_pairs.append(test_set, training_set)
+	return training_pairs
+
+def main_modified_k_folding(filename, k):
+	# prepare data
+	k_data_sets = loadDataset_k_folding_naive(filename, k)
+	# generate predictions
+	predictions=[]
+	for x in range(len(testSet)):
+		neighbors = getNeighbors(trainingSet, testSet[x], k)
+		result = getResponse(neighbors)
+		predictions.append(result)
+	accuracy = getAccuracy(testSet, predictions)
+	# return
+	return [split, k, accuracy]
 
 
 
@@ -151,7 +176,7 @@ if __name__ == '__main__':
 	- solution: recalculate trainingSet in a while loop until it's large enough and then move on.
 	"""
 
-	# # PLOT ACCURACY FOR CHANGES
+	# PLOT ACCURACY FOR CHANGES
 	k_list = [1, 5, 10, 15, 20]
 	for k in k_list:
 		k_data = results_container[k]
@@ -161,3 +186,8 @@ if __name__ == '__main__':
 		print(the_x)
 		print(the_y)
 		print("")
+
+	# K FOLDING ALGORITHM
+	k_data_sets = loadDataset_k_folding_naive("iris.csv", 5)
+	print(len(k_data_sets))
+
