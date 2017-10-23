@@ -30,6 +30,13 @@ def euclideanDistance(instance1, instance2, length):
 		distance += pow((instance1[x] - instance2[x]), 2)
 	return math.sqrt(distance)
 
+def euclidean_distance(training_list, test_list):
+	length = len(training_list)
+	for j in range(length):
+		distance += math.pow(training_list[j] - test_list[j], 2)
+	return math.sqrt(distance)
+
+
 def getNeighbors(trainingSet, testInstance, k):
 	distances = []
 	length = len(testInstance)-1
@@ -41,6 +48,9 @@ def getNeighbors(trainingSet, testInstance, k):
 	for x in range(k):
 		neighbors.append(distances[x][0])
 	return neighbors
+
+def get_neighbours(training_list, test_list, k):
+	
 
 def getResponse(neighbors):
 	classVotes = {}

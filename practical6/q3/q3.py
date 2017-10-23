@@ -41,14 +41,6 @@ if __name__ == '__main__':
 	for d in range(5, 11, 1):
 		classifier = get_fitted_svm(0.01, 100, digits, d)
 		print("Prediction for {} digits: {}".format(d, get_prediction(classifier, digits, d)))
+		this_image = get_visualisation(digits, d)
+		this_image.show()
 		print("")
-
-	# # classifier
-	# classifier = get_fitted_svm(0.01, 100, digits, 1)
-
-	# # prediction
-	# print("Prediction: {}".format(get_prediction(classifier, digits, 1)))
-
-	# # visualisation
-	# this_image = get_visualisation(digits, -1)
-	# this_image.show()
