@@ -103,6 +103,25 @@ def main_modified(split, k):
 		# return
 		return [split, k, accuracy]
 
+def loadDataset_k_folding_naive(filename, trainingSet=[] , testSet=[], k):
+	with open(filename, 'r') as csvfile:
+	    lines = csv.reader(csvfile)
+	    dataset = list(lines)
+	    for x in range(len(dataset)-1):
+	        for y in range(4):
+	            dataset[x][y] = float(dataset[x][y])
+        # folding happens here
+        k_data_sets = [[] for x in range(k)]
+        k_index = 0
+        for j in range(len(dataset)):
+        	k_data_sets[k_index].append(dataset[j])
+        	k_index += 1
+        	if k_index == k:
+        		k_index = 0
+        # return
+        return k_data_sets
+
+
 
 if __name__ == '__main__':
 
