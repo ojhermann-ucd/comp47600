@@ -1,4 +1,4 @@
-# IMPORTS
+# IMPORT
 import nltk
 from nltk.corpus import names
 import random
@@ -62,7 +62,7 @@ if __name__ == '__main__':
 		number_of_last_letters += 1
 
 	"""
-	I extended the given formul to allow for n last letters and compared it to one allowing for n first letters
+	I extended the given formula to allow for n last letters and compared it to one allowing for n first letters
 	I also modified the code to use all of the data: 50% in training and 50% in test
 	- this could easily be modified to change either the split or volume of total data used
 	I've included a graph of one run of the two metrics

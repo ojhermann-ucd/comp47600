@@ -1,6 +1,7 @@
 # SOURCE
 # http://pythonprogramming.net/support-vector-machine-svm-example-tutorial-scikit-learn-python/
 # https://www.quora.com/What-are-C-and-gamma-with-regards-to-a-support-vector-machine
+# https://www.researchgate.net/post/Does_anyone_know_what_is_the_Gamma_parameter_about_RBF_kernel_function
 
 
 # IMPORTS
@@ -44,3 +45,13 @@ if __name__ == '__main__':
 		this_image = get_visualisation(digits, d)
 		this_image.show()
 		print("")
+
+	"""
+	C
+	- higher values make a "hard margin" and allows fewere errors when fitting the model (compared to lower C)
+	- higher/"harder" C could lead to overfitting the training data
+	- lower/"softer" C could allow for a more generalisable model
+	Gamma
+	- if too large, then the radius of the area of influence of the area of support vecors only includes the support vector itself and will lead to overfitting
+	- if too small, then the model will not be able to capture the complexity of the data; the region of influence of any support vector would be all the training data, so it would behave like a linear model i.e. not capture the non-linear nature and complexity of the data
+	"""
