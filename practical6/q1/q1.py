@@ -86,8 +86,6 @@ def main_modified(split, k):
 	loadDataset('iris.csv', split, trainingSet, testSet)
 	while len(trainingSet) < k:
 		loadDataset('iris.csv', split, trainingSet, testSet) # added to repeat until appropriate size is achieved
-	# print('Train set: ' + repr(len(trainingSet)))
-	# print('Test set: ' + repr(len(testSet)))
 	# generate predictions
 	predictions=[]
 	if len(trainingSet) < k:
@@ -97,9 +95,7 @@ def main_modified(split, k):
 			neighbors = getNeighbors(trainingSet, testSet[x], k)
 			result = getResponse(neighbors)
 			predictions.append(result)
-			# print('> predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
 		accuracy = getAccuracy(testSet, predictions)
-		# print('Accuracy: ' + repr(accuracy) + '%')
 		# return
 		return [split, k, accuracy]
 
