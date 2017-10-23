@@ -49,8 +49,6 @@ def getNeighbors(trainingSet, testInstance, k):
 		neighbors.append(distances[x][0])
 	return neighbors
 
-def get_neighbours(training_list, test_list, k):
-	
 
 def getResponse(neighbors):
 	classVotes = {}

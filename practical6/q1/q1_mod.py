@@ -48,6 +48,44 @@ def generate_test_training_pairs(k_data_lists):
 	return test_training_pairs
 
 
+def euclidean_distance(instance_1, instance_2, length):
+	for j in range(length):
+		distance += math.pow(instance_1[j] - instance_2[j], 2)
+	return math.sqrt(distance)
+
+def get_k_neighbours(training_list, test_instance, k):
+	length = len(test_instance)
+	distances = [(training_instance ,euclidean_distance(training_instance, test_instance, length)) for training_instance in training_list]
+	# for training_instance in training_list:
+	# 	distances.append((training_instance ,euclidean_distance(training_instance, test_instance, length)))
+	distances.sort(key=operator.itemgetter(1))
+	# return neighbours
+	return [distances[j][0] for j in range(k)]
+
+def get_response(neighbours):
+	class_votes = defaultdict(list)
+	for n in neighbours:
+		class_votes[n[-1]] += 1
+	sorted_votes = sorted(class_votes.items(), key=operator.itemgetter(1), reverse=True)
+	return sorted_votes[0][0]
+
+def get_predictions(training_list, test_list, k):
+	predictions = list()
+	for test_instance in test_list:
+		neighbours = get_k_neighbours(training_list, test_instance, k):
+		predictions.append(get_response(neighbours))
+	return predictions
+
+def get_accuracy(test_list, predictions):
+	correct = 0
+	length = len(test_list)
+	for j in range(length):
+		if test_list[j][-1] == predictions[j]:
+			correct += 1
+	return float(correct / length) * 100
+
+
+
 if __name__ == '__main__':
 
 	# inputs
@@ -58,3 +96,6 @@ if __name__ == '__main__':
 	data_list = get_source_data(file_name)
 	k_data_lists = get_data_for_k_folding(data_list, k)
 	test_training_pairs = generate_test_training_pairs(k_data_lists)
+
+	# analysis
+	
