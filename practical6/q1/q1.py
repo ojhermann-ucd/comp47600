@@ -119,28 +119,30 @@ def loadDataset_k_folding_naive(filename, k):
 
 def generate_test_training_pairs(k_data_sets):
 	k = len(k_data_sets)
-	training_pairs = list()
+	test_training_pairs = list()
 	for j in range(k):
 		test_set = k_data_sets[j]
 		training_set = list()
 		for h in range(k):
 			if h != j:
 				training_set += k_data_sets[h]
-		training_pairs.append(test_set, training_set)
-	return training_pairs
+		test_training_pairs.append([test_set, training_set])
+	return test_training_pairs
 
 def main_modified_k_folding(filename, k):
 	# prepare data
 	k_data_sets = loadDataset_k_folding_naive(filename, k)
+	test_training_pairs = generate_test_training_pairs(k_data_sets)
 	# generate predictions
-	predictions=[]
-	for x in range(len(testSet)):
-		neighbors = getNeighbors(trainingSet, testSet[x], k)
+	output = list()
+	for pair in test_training_pairs:
+		predictions=[]
+		neighbors = getNeighbors(pair[1], pair[0], k)
 		result = getResponse(neighbors)
 		predictions.append(result)
-	accuracy = getAccuracy(testSet, predictions)
-	# return
-	return [split, k, accuracy]
+		accuracy = getAccuracy(testSet, predictions)
+		output.append(accuracy)
+	return output
 
 
 
@@ -188,6 +190,11 @@ if __name__ == '__main__':
 		print("")
 
 	# K FOLDING ALGORITHM
+	"""
+	Generating the k data sets for a k-folded elemnt is straightforward enough.
+	Conceptually, implementing the test on this data is also straightforward: for each of the k data sets created, run the k-nearest neighbour algorithm with that data set as test and the others combined as training; take the resulting accuracy scores, sum them, and divide by k to get the average accuracy
+	However, to implement it would require modifying each of the underlying functions, which would not be a good use of time for the purposes of this module and the other work I need to complete to demonstrate a grasp of the underyling concepts of text analytics.
+	"""
 	k_data_sets = loadDataset_k_folding_naive("iris.csv", 5)
 	print(len(k_data_sets))
-
+	# main_modified_k_folding("iris.csv", 5), this does not work without modifying all the functions given, but doing to is not a good use of time.
