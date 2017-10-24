@@ -57,8 +57,6 @@ def euclidean_distance(instance_1, instance_2, length):
 def get_k_neighbours(training_list, test_instance, k):
 	length = len(test_instance)
 	distances = [(training_instance ,euclidean_distance(training_instance, test_instance, length)) for training_instance in training_list]
-	# for training_instance in training_list:
-	# 	distances.append((training_instance ,euclidean_distance(training_instance, test_instance, length)))
 	distances.sort(key=operator.itemgetter(1))
 	# return neighbours
 	return [distances[j][0] for j in range(k)]

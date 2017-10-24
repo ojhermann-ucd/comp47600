@@ -78,17 +78,17 @@ def main():
 	accuracy = getAccuracy(testSet, predictions)
 	print('Accuracy: ' + repr(accuracy) + '%')
 
-def main_modified(split, k):
+def main_modified(split, k): # add split, k variables
 	# prepare data
 	trainingSet=[]
 	testSet=[]
 	loadDataset('iris.csv', split, trainingSet, testSet)
 	while len(trainingSet) < k:
-		loadDataset('iris.csv', split, trainingSet, testSet) # added to repeat until appropriate size is achieved
+		loadDataset('iris.csv', split, trainingSet, testSet) # added to ensure a set is created; see comments below
 	# generate predictions
 	predictions=[]
 	if len(trainingSet) < k:
-		print("len(trainingSet) < k when split = {} and k = {}".format(split, k)) # check and notification
+		print("len(trainingSet) < k when split = {} and k = {}".format(split, k)) # check and notification of size
 	else:
 		for x in range(len(testSet)):
 			neighbors = getNeighbors(trainingSet, testSet[x], k)
@@ -96,7 +96,7 @@ def main_modified(split, k):
 			predictions.append(result)
 		accuracy = getAccuracy(testSet, predictions)
 		# return
-		return [split, k, accuracy]
+		return [split, k, accuracy] # return information relevant to the assignment
 
 
 if __name__ == '__main__':
