@@ -60,23 +60,37 @@ def parse_output(data):
 
 if __name__ == '__main__':
 
-	# inputs
-	number_of_points = 15
-	iterations = 10
-	number_of_clusters = 3
+	# data
+	data = np.array([
+			[0.75, 0.3],
+			[0.75, 0.4],
+			[0.75, 0.5],
+			[-0.75, 0.3],
+			[-0.75, 0.4],
+			[-0.75, 0.5],
+			[-0.75, -0.3],
+			[-0.75, -0.4],
+			[-0.75, -0.5],
+			[0.75, -0.3],
+			[0.75, -0.4],
+			[0.75, -0.5],
+			[0.0, 0.0],
+			[0.0, 0.1],
+			[0.0, -0.1],
+		])
+	data = list(data)
 
-	# create the data
-	data_runs = list()
-	for j in range(iterations):
-		data_runs.append(list(init_board(number_of_points)))
+	# inputs
+	iterations = 20
+	number_of_clusters = 3
 
 	# organise the data
 	mu_dict = dict()
 	cluster_dict = dict()
 	counter = 0
-	for run in data_runs:
-		center = find_centers(run, number_of_clusters)
-		# parse_output(center) # uncomment if you want graphs
+	for j in range(iterations):
+		center = find_centers(data, number_of_clusters)
+		parse_output(center) # uncomment if you want graphs
 		mu_dict[counter] = center[0]
 		cluster_dict[counter] = center[1]
 		counter += 1
@@ -94,4 +108,4 @@ if __name__ == '__main__':
 			for pair in cluster_array:
 				cluster_set.add(tuple(pair))
 	print("{} out of {} mu values are unique".format(len(mu_set), len(mu_dict) * number_of_clusters))
-	print("{} out of {} cluster values are unique".format(len(cluster_set), len(cluster_dict) * number_of_points))
+	print("{} out of {} cluster values are unique".format(len(cluster_set), len(cluster_dict) * 15))
